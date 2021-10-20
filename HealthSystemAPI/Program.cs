@@ -207,7 +207,7 @@ namespace HealthSystemAPI
                 }
                 else if (freeTestInput == "TakeDamage")
                 {
-                    TakeDamage(hp);
+                    TakeDamage(damage);
                     testingLoop();
                 }
                 else if (freeTestInput == "Escape")
