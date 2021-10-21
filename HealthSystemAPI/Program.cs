@@ -104,6 +104,8 @@ namespace HealthSystemAPI
             ShowHUD();
             TakeDamage(200);
             ShowHUD();
+            TakeDamage(200);
+            ShowHUD();
             Console.ReadKey(true);
 
 
@@ -246,24 +248,24 @@ namespace HealthSystemAPI
             if (damage >= 0)
             {
                 Console.WriteLine("Debug: Player Took: " + damage + " damage.");
-                if (shield > 0)
+                if (shield >= 0)
                 {
                     shield = shield - damage;
                     remainder = shield;
 
+                    if (health > 0 && shield <= 0)
+                    {
+                        health = health + shield;
+                        shield = 0;
+                    }
                 }
-
-                if (health > 0 && shield <= 0)
-                {
-                    health = health + remainder;
-                    shield = 0;
-                }
+                
 
                 if (health <= 0)
                 {
                     Console.WriteLine("Player Lost A Life.");
                     lives--;
-                    if (lives > 0)
+                    if (lives >= 0)
                     {
                         Respawn();
                     }
@@ -271,6 +273,8 @@ namespace HealthSystemAPI
                     {
                         Console.WriteLine("Out Of Lives!");
                         gameOver = true;
+                        lives = 0;
+                        health = 0;
                     }
                 }
             }
@@ -314,7 +318,7 @@ namespace HealthSystemAPI
 
             Random rd2 = new Random();
             int whichHeal = rd2.Next(0, 2);
-            healingAmount[whichHeal] = hp;
+            hp = healingAmount[whichHeal];
         }
 
         static void SetHpVariable()
