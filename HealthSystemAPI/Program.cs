@@ -19,9 +19,14 @@ namespace HealthSystemAPI
         static string freeTestInput;
         static void Main(string[] args)
         {
+            if (Console.ReadKey(true).Key == ConsoleKey.Oem3)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Type 'Escape' to exit this program");
+                Console.WriteLine("Type 'Help' for list of functions");
+                testingLoop();
+            }
 
-
-            Console.ReadKey(true);
             Console.WriteLine("Showcase of TakeDamage() modifying shield.");
             Console.WriteLine("");
             Reset();
