@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics; //debug.assert()
 
 namespace HealthSystemAPI
 {
@@ -27,106 +28,176 @@ namespace HealthSystemAPI
                 testingLoop();
             }
 
-            Console.WriteLine("Showcase of TakeDamage() modifying shield.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            TakeDamage(damage);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of TakeDamage() modifying shield and health.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            TakeDamage(damage * 3);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of TakeDamage() modifying shield, health, and lives.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            TakeDamage(damage * 4);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of TakeDamage() error checks.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            TakeDamage(-damage);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of Heal() modifying health from full.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            Heal(25);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of Heal() modifying health from half full.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            TakeDamage(damage * 3);
-            ShowHUD();
-            Heal(hp);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of Heal() error checks.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            Heal(-hp);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of RegenerateShield() modifying shield from full.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            RegenerateShield(hp);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of RegenerateShield() modifying shield from half.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            TakeDamage(damage);
-            RegenerateShield(hp);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of RegenerateShield() error checks.");
-            Console.WriteLine("");
-            Reset();
-            ShowHUD();
-            RegenerateShield(-hp);
-            ShowHUD();
-            Console.ReadKey(true);
-            Console.WriteLine("Showcase of range checking lives.");
-            Reset();
-            ShowHUD();
-            TakeDamage(200);
-            ShowHUD();
-            TakeDamage(200);
-            ShowHUD();
-            TakeDamage(200);
-            ShowHUD();
-            TakeDamage(200);
-            ShowHUD();
-            Console.ReadKey(true);
-
-
-            Console.WriteLine("");
-            Console.WriteLine("This is the end of the hard coded showcase, to continue to test freely press '~'");
-            Console.WriteLine("Hit any other key to exit");
-            Console.ReadKey(true);
-            if (Console.ReadKey(true).Key == ConsoleKey.Oem3)
+            UnitTest();
+            ShowCase();
+        }
+        static void ShowCase()
             {
                 Console.WriteLine("");
-                Console.WriteLine("Type 'Escape' to exit this program");
-                Console.WriteLine("Type 'Help' for list of functions");
-                testingLoop(); 
-            }
+                Console.WriteLine("---- Showcase Beginning ----");
+                Console.WriteLine("");
+                Console.WriteLine("Showcase of TakeDamage() modifying shield.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                TakeDamage(damage);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of TakeDamage() modifying shield and health.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                TakeDamage(damage * 3);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of TakeDamage() modifying shield, health, and lives.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                TakeDamage(damage * 4);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of TakeDamage() error checks.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                TakeDamage(-damage);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of Heal() modifying health from full.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                Heal(25);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of Heal() modifying health from half full.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                TakeDamage(damage * 3);
+                ShowHUD();
+                Heal(hp);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of Heal() error checks.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                Heal(-hp);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of RegenerateShield() modifying shield from full.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                RegenerateShield(hp);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of RegenerateShield() modifying shield from half.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                TakeDamage(damage);
+                RegenerateShield(hp);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of RegenerateShield() error checks.");
+                Console.WriteLine("");
+                Reset();
+                ShowHUD();
+                RegenerateShield(-hp);
+                ShowHUD();
+                Console.ReadKey(true);
+                Console.WriteLine("Showcase of range checking lives.");
+                Reset();
+                ShowHUD();
+                TakeDamage(200);
+                ShowHUD();
+                TakeDamage(200);
+                ShowHUD();
+                TakeDamage(200);
+                ShowHUD();
+                TakeDamage(200);
+                ShowHUD();
+                Console.ReadKey(true);
+
+
+                Console.WriteLine("");
+                Console.WriteLine("This is the end of the hard coded showcase, to continue to test freely press '~'");
+                Console.WriteLine("Hit any other key to exit");
+                Console.ReadKey(true);
+                if (Console.ReadKey(true).Key == ConsoleKey.Oem3)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Type 'Escape' to exit this program");
+                    Console.WriteLine("Type 'Help' for list of functions");
+                    testingLoop();
+                }
 
         }
+
+        static void UnitTest()
+        {
+            Reset();
+            Console.WriteLine("Testing that Heal() respects health range 0..100.");
+            Heal(10);
+            Debug.Assert(health == 100);
+            Reset();
+
+            Console.WriteLine("Testing the Heal() will not accept a negative value.");
+            Heal(-10);
+            Debug.Assert(health == 100);
+            Reset();
+
+            Console.WriteLine("Testing that RegenerateShield() repsects shield range 0..100.");
+            RegenerateShield(10);
+            Debug.Assert(shield == 100);
+            Reset();
+
+            Console.WriteLine("Testing that RegenerateShield() will not accept a negative value.");
+            RegenerateShield(-10);
+            Debug.Assert(shield == 100);
+            Reset();
+
+            Console.WriteLine("Testing that TakeDamage() respects shield range 0..100.");
+            Console.WriteLine("Also testing that TakeDamage() spills over correctly.");
+            TakeDamage(110);
+            Debug.Assert(shield == 0);
+            Debug.Assert(health == 90);
+            Reset();
+
+            Console.WriteLine("Testing that TakeDamage() will not accept a negative value.");
+            TakeDamage(-110);
+            Debug.Assert(shield == 100);
+            Reset();
+
+            Console.WriteLine("Testing that TakeDamage() respects health range 0..100.");
+            Console.WriteLine("Also testing shield range, damage spill over, and respawn");
+            TakeDamage(250);
+            Debug.Assert(health == 100);
+            Debug.Assert(shield == 100);
+            Reset();
+
+            Console.WriteLine("Testing that TakeDamage() interacts properly with Respawn() on player death.");
+            TakeDamage(250);
+            Debug.Assert(health >= 0 && health <= 100);
+            Debug.Assert(shield >= 0 && shield <= 100);
+            Debug.Assert(lives == 2);
+            Reset();
+
+            Console.WriteLine("Testing that when out of lives, taking lethal damage will set gameOver to true.");
+            TakeDamage(250);
+            TakeDamage(250);
+            TakeDamage(250);
+            TakeDamage(250);
+            Debug.Assert(gameOver == true);
+            Reset();
+
+            Console.Clear();
+            Console.WriteLine("Unit test successful.");
+        }
+
 
             static void testingLoop()
             {
@@ -135,97 +206,109 @@ namespace HealthSystemAPI
                 Console.WriteLine("Take what action?");
                 freeTestInput = Console.ReadLine();
 
-                if (freeTestInput == "Help")
-                {
-                    //Console.WriteLine(" DamageRNG - Generates a random damage value between 1 and 100.");
-                    Console.WriteLine(" Heal - Restores health equal to the 'hp' value. Range checks health and hp.");
-                    Console.WriteLine(" HealRNG - Randomly assigns one of three values to hp: 25, 50, 100.");
-                    Console.WriteLine(" RegenerateShield - Restores shield equal to the 'hp' value. Range checks shields and hp.");
-                    Console.WriteLine(" Reset - Sets health, shields, and lives back to their inital values: 100, 100, 3.");
-                    Console.WriteLine(" Respawn - Sets healh and shields to 100, range checks lives.");
-                    Console.WriteLine(" SetDamageVariable - Opens prompt to set damage value. Value must be an integer.");
-                    Console.WriteLine(" SetHealthVariable - Opens prompt to set health value. Value must be an integer.");
-                    Console.WriteLine(" SetHpVariable - Opens prompt to set hp value. Value must be an integer.");
-                    Console.WriteLine(" SetLivesVariable - Opens prompt to set lives value. Value must be an integer");
-                    Console.WriteLine(" SetShieldVariable - Opens prompt to set shield value. Value must be an integer");
-                    Console.WriteLine(" ShowHUD - Shows HUD.");
-                    Console.WriteLine(" TakeDamage - Deals damage to the player, starting with shields and spilling over to health.");
-                    testingLoop();
-                }
-                else if (freeTestInput == "DamageRNG")
-                {
-                    DamageRNG();
-                    testingLoop();
-                }
-                else if (freeTestInput == "Heal")
-                {
-                    Heal(hp);
-                    testingLoop();
-                }
-                else if (freeTestInput == "HealRNG")
-                {
-                    HealRNG();
-                    testingLoop();
-                }
-                else if (freeTestInput == "RegenerateShield")
-                {
-                    RegenerateShield(hp);
-                    testingLoop();
-                }
-                else if (freeTestInput == "Reset")
-                {
-                    Reset();
-                    testingLoop();
-                }
-                else if (freeTestInput == "Respawn")
-                {
-                    Respawn();
-                    testingLoop();
-                }
-                else if (freeTestInput == "SetDamageVariable")
-                {
-                    SetDamageVariable();
-                    testingLoop();
-                }
-                else if (freeTestInput == "SetHealthVariable")
-                {
-                    SetHealthVariable();
-                    testingLoop();
-                }
-                else if (freeTestInput == "SetHpVariable")
-                {
-                    SetHpVariable();
-                    testingLoop();
-                }
-                else if (freeTestInput == "SetLivesVariable")
-                {
-                    SetLivesVariable();
-                    testingLoop();
-                }
-                else if (freeTestInput == "SetShieldVariable")
-                {
-                    SetShieldVariable();
-                    testingLoop();
-                }
-                else if (freeTestInput == "ShowHUD")
-                {
-                    ShowHUD();
-                    testingLoop();
-                }
-                else if (freeTestInput == "TakeDamage")
-                {
-                    TakeDamage(damage);
-                    testingLoop();
-                }
-                else if (freeTestInput == "Escape")
-                {
+            if (freeTestInput == "Help")
+            {
+                Console.WriteLine(" DamageRNG - Generates a random damage value between 1 and 100.");
+                Console.WriteLine(" Heal - Restores health equal to the 'hp' value. Range checks health and hp.");
+                Console.WriteLine(" HealRNG - Randomly assigns one of three values to hp: 25, 50, 100.");
+                Console.WriteLine(" RegenerateShield - Restores shield equal to the 'hp' value. Range checks shields and hp.");
+                Console.WriteLine(" Reset - Sets health, shields, and lives back to their inital values: 100, 100, 3.");
+                Console.WriteLine(" Respawn - Sets healh and shields to 100, range checks lives.");
+                Console.WriteLine(" SetDamageVariable - Opens prompt to set damage value. Value must be an integer.");
+                Console.WriteLine(" SetHealthVariable - Opens prompt to set health value. Value must be an integer.");
+                Console.WriteLine(" SetHpVariable - Opens prompt to set hp value. Value must be an integer.");
+                Console.WriteLine(" SetLivesVariable - Opens prompt to set lives value. Value must be an integer.");
+                Console.WriteLine(" SetShieldVariable - Opens prompt to set shield value. Value must be an integer.");
+                Console.WriteLine(" ShowCase - Showcases multiple tests of multiple methods.");
+                Console.WriteLine(" ShowHUD - Shows HUD.");
+                Console.WriteLine(" TakeDamage - Deals damage to the player, starting with shields and spilling over to health.");
+                Console.WriteLine(" UnitTest - Runs a unit test based on preset values.");
+                testingLoop();
+            }
+            else if (freeTestInput == "DamageRNG")
+            {
+                DamageRNG();
+                testingLoop();
+            }
+            else if (freeTestInput == "Heal")
+            {
+                Heal(hp);
+                testingLoop();
+            }
+            else if (freeTestInput == "HealRNG")
+            {
+                HealRNG();
+                testingLoop();
+            }
+            else if (freeTestInput == "RegenerateShield")
+            {
+                RegenerateShield(hp);
+                testingLoop();
+            }
+            else if (freeTestInput == "Reset")
+            {
+                Reset();
+                testingLoop();
+            }
+            else if (freeTestInput == "Respawn")
+            {
+                Respawn();
+                testingLoop();
+            }
+            else if (freeTestInput == "SetDamageVariable")
+            {
+                SetDamageVariable();
+                testingLoop();
+            }
+            else if (freeTestInput == "SetHealthVariable")
+            {
+                SetHealthVariable();
+                testingLoop();
+            }
+            else if (freeTestInput == "SetHpVariable")
+            {
+                SetHpVariable();
+                testingLoop();
+            }
+            else if (freeTestInput == "SetLivesVariable")
+            {
+                SetLivesVariable();
+                testingLoop();
+            }
+            else if (freeTestInput == "SetShieldVariable")
+            {
+                SetShieldVariable();
+                testingLoop();
+            }
+            else if (freeTestInput == "ShowCase")
+            {
+                ShowCase();
+                testingLoop();
+            }
+            else if (freeTestInput == "ShowHUD")
+            {
+                ShowHUD();
+                testingLoop();
+            }
+            else if (freeTestInput == "TakeDamage")
+            {
+                TakeDamage(damage);
+                testingLoop();
+            }
+            else if (freeTestInput == "UnitTest")
+            {
+                UnitTest();
+                testingLoop();
+            }
+            else if (freeTestInput == "Escape")
+            {
 
-                }
-                else
-                {
-                    Console.WriteLine("**Command Not Recognized**");
-                    testingLoop();
-                }
+            }
+            else
+            {
+                Console.WriteLine("**Command Not Recognized**");
+                testingLoop();
+            }
 
             }
 
